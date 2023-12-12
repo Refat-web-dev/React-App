@@ -14,7 +14,7 @@ class User extends React.Component {
                     <div className="data"><span className="variety">Email:</span><span>{this.user.email}</span></div>
                     <div className="data"><span className="variety">Phone:</span><span>{this.user.phone}</span></div>
                     <div className="data"><span className="variety">Is adult:</span><span>{this.user.isadult ? "Yes" : "No"}</span> </div>
-                    <div className="data" style={{ lineHeight: "20px" }}><span className="variety">Bio:</span><span> Lorem ipsum dolor sit, amet consectetur adipisicing elit.</span></div>
+                    <div className="data" style={{ lineHeight: "20px" }}><span className="variety">Bio:</span><span>{this.user.bio ? this.user.bio : "Not specified"}</span></div>
                     <a href={this.user.website} className="link"> {this.user.website}</a>
                 </div>
             </li>

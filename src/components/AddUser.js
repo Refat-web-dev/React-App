@@ -4,13 +4,13 @@ class AddUser extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            firstname: "not specified",
-            lastname: "not specified",
-            email: "not specified",
+            firstname: "Not specified",
+            lastname: "Not specified",
+            email: "Not specified",
             phone: 0,
-            website: "not specified",
+            website: "Not specified",
             isadult: false,
-            bio: "not specified",
+            bio: "Not specified",
         }
     }
 
@@ -23,7 +23,7 @@ class AddUser extends React.Component {
                     <input placeholder="Last name" onChange={(e) => this.setState({ lastname: e.target.value })} />
                     <input placeholder="Email" onChange={(e) => this.setState({ email: e.target.value })} />
                     <input placeholder="Phone" onChange={(e) => this.setState({ phone: e.target.value })} />
-                    <textarea placeholder="Bio"></textarea>
+                    <textarea placeholder="Bio" onChange={(e) => this.setState({ bio: e.target.value })}></textarea>
                     <input placeholder="Link" onChange={(e) => this.setState({ website: e.target.value })} />
                     <div className="ageControll">
                         <label htmlFor="isAdult">Is adult ?</label>
