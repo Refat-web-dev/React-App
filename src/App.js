@@ -1,32 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import List from "./components/List";
+import AddUser from "./components/AddUser";
 
-export default function App() {
-    const [name, setName] = useState([])
-    console.log(name)
-    useEffect(() => {
-        names()
-    }, [])
-    const names = async () => {
-        const res = await fetch('https://jsonplaceholder.org/users')
-
-        setName(await res.json())
+class App extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            users: []
+        }
+        this.addUser = this.addUser.bind(this)
     }
 
-    return (
-        <div className="App">
-            <h1 className="title">Users</h1>
-            <ul>
-                {name.map(el => {
-                    return (
-                        <li key={el.id}>
-                            <span style={{ textAlign: "center", marginBottom: "5px" }}>{el.id}: {el.firstname} {el.lastname}</span>
-                            <span>Email: {el.email}</span>
-                            <span>Phone: {el.phone}</span>
-                            <a href={el.website} className="link"> {el.website}</a>
-                        </li>)
-                })}
-            </ul>
+    componentDidMount() {
+        fetch('https://jsonplaceholder.org/users')
+            .then((response) => response.json())
+            .then(list => {
+                this.setState({ users: list.slice(0, 6) });
+            });
+    }
 
-        </div >
-    );
+    render() {
+        return (
+            <div className="row">
+                <h1 className="title">Users:
+                    {/* <button onClick={<AddUser style="block" />} className="openModal">+</button> */}
+                </h1>
+                <List users={this.state.users} />
+                <aside>
+                    <AddUser onAdd={this.addUser} />
+                </aside>
+            </div>
+        )
+    }
+
+    addUser(user) {
+        const id = this.state.users.length + 1
+        this.setState({
+            users: [...this.state.users, { id, ...user }]
+        })
+        console.log(user);
+    }
 }
+export default App
