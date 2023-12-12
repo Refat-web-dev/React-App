@@ -4,13 +4,13 @@ class AddUser extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            firstname: "",
-            lastname: "",
-            email: "",
+            firstname: "not specified",
+            lastname: "not specified",
+            email: "not specified",
             phone: 0,
-            website: "",
+            website: "not specified",
             isadult: false,
-            bio: "",
+            bio: "not specified",
         }
     }
 
