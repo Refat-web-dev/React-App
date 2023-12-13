@@ -8,7 +8,9 @@ class App extends React.Component {
         this.state = {
             users: []
         }
+
         this.addUser = this.addUser.bind(this)
+        this.deleteUSer = this.deleteUSer.bind(this)
     }
 
     componentDidMount() {
@@ -25,7 +27,7 @@ class App extends React.Component {
                 <h1 className="title">Users:
                     {/* <button onClick={<AddUser style="block" />} className="openModal">+</button> */}
                 </h1>
-                <List users={this.state.users} />
+                <List users={this.state.users} onDelete={this.deleteUSer} />
                 <aside>
                     <AddUser onAdd={this.addUser} />
                 </aside>
@@ -33,12 +35,18 @@ class App extends React.Component {
         )
     }
 
+    deleteUSer(id) {
+        this.setState({
+            users: this.state.users.filter(el => el.id !== id)
+        })
+    }
+
     addUser(user) {
         const id = this.state.users.length + 1
+
         this.setState({
             users: [...this.state.users, { id, ...user }]
         })
-        console.log(user);
     }
 }
 export default App

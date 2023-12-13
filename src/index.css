@@ -48,22 +48,48 @@ body::-webkit-scrollbar-thumb {
 }
 
 ul {
-  max-width: 1250px;
   display: flex;
-  gap: 30px;
   flex-wrap: wrap;
-  justify-content: center;
+  max-width: 1250px;
+  gap: 30px;
+  padding: 0 20px;
 }
 
 li {
+  z-index: 1;
+  width: 300px;
+  height: 241px;
+  transition: .3s ease;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+li:hover {
+  background: #09152a4a;
+  box-shadow: 0 0 15px black;
+}
+
+li:active {
+  background: #050b164a;
+  background: #09152a4a;
+  box-shadow: 0 0 15px transparent;
+}
+
+.userData:hover .name {
+  background: #00000042;
+}
+
+
+.userData {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-radius: 10px;
   background: #050b164a;
   width: 300px;
-  transition: .3s ease;
+  height: 241px;
+  transition: .5s ease;
   position: relative;
+  border-radius: 10px;
 }
 
 .wrapper {
@@ -90,15 +116,6 @@ li {
 
 .edit {
   right: 30px;
-}
-
-li:hover {
-  background: #09152a4a;
-  box-shadow: 0 0 15px black;
-}
-
-li:hover .name {
-  background: #00000042;
 }
 
 .name {

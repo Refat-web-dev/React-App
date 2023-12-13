@@ -9,7 +9,7 @@ class List extends React.Component {
                 <ul>
                     {this.props.users.map(el => {
                         return (
-                            <User key={el.id} user={el} />
+                            <User key={el.id} user={el} onDelete={this.props.onDelete} />
                         )
                     })}
                 </ul>
