@@ -10,13 +10,14 @@ class User extends React.Component {
                 <div className="userData" ref={(div) => this.myDiv = div}>
                     <FaUserEdit className="edit" />
                     <IoCloseCircleSharp className="close" onClick={() => {
-                        this.myLi.style.zIndex = "0"
-                        this.myDiv.style.scale = "0"
+                        this.myLi.style.margin = " 0 0px 0 -30px"
+                        this.myLi.style.opacity = "0"
                         this.myLi.style.width = "0"
+                        this.myDiv.style.scale = "0"
 
                         setTimeout(() => {
                             this.props.onDelete(this.user.id)
-                        }, 500);
+                        }, 600);
                     }} />
                     <span className="name" style={{ textAlign: "center", marginBottom: "5px" }}><mark>{this.user.id}.</mark> {this.user.firstname} {this.user.lastname}</span>
                     <div className="wrapper">

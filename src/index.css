@@ -50,16 +50,15 @@ body::-webkit-scrollbar-thumb {
 ul {
   display: flex;
   flex-wrap: wrap;
-  max-width: 1250px;
+  max-width: 1000px;
   gap: 30px;
   padding: 0 20px;
 }
 
 li {
-  z-index: 1;
   width: 300px;
   height: 241px;
-  transition: .3s ease;
+  transition: .5s ease;
   overflow: hidden;
   border-radius: 10px;
 }
@@ -179,6 +178,17 @@ form textarea {
   border-radius: 10px;
   font-size: 16px;
   color: white;
+  transition: .3s ease;
+}
+
+form button:hover {
+  opacity: .9;
+  box-shadow: 0 0 10px black;
+}
+
+form input:not([type="checkbox"]):focus,
+form textarea:focus {
+  box-shadow: 0 0 10px black;
 }
 
 form label {
