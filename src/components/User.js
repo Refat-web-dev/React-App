@@ -1,14 +1,25 @@
 import React from "react";
 import { IoCloseCircleSharp } from "react-icons/io5";
 import { FaUserEdit } from "react-icons/fa";
+import AddUser from "./AddUser";
 
 class User extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            editForm: false
+        }
+    }
     user = this.props.user
     render() {
         return (
-            <li ref={(li) => this.myLi = li}>
+
+            < li ref={(li) => this.myLi = li
+            }>
                 <div className="userData" ref={(div) => this.myDiv = div}>
-                    <FaUserEdit className="edit" />
+                    <FaUserEdit className="edit" onClick={() => {
+                        this.setState({ editForm: !this.state.editForm })
+                    }} />
                     <IoCloseCircleSharp className="close" onClick={() => {
                         this.myLi.style.margin = " 0 0px 0 -30px"
                         this.myLi.style.opacity = "0"
@@ -27,8 +38,9 @@ class User extends React.Component {
                         <div className="data" style={{ lineHeight: "20px" }}><span className="variety">Bio:</span><span>{this.user.bio ? this.user.bio : "Not specified"}</span></div>
                         <a href={this.user.website} className="link"> {this.user.website}</a>
                     </div>
+                    <center>{this.state.editForm ? <AddUser user={this.user} onAdd={this.props.onEdit} className="addUser editUser" style={{ all: "unset" }} /> : ""}</center>
                 </div>
-            </ li>
+            </ li >
         )
     }
 }

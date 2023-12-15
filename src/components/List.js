@@ -2,19 +2,24 @@ import React from "react";
 import User from "./User";
 
 class List extends React.Component {
-
     render() {
-        return (
-            <>
+        if (this.props.users.length > 0) {
+            return (
                 <ul>
-                    {this.props.users.map(el => {
-                        return (
-                            <User key={el.id} user={el} onDelete={this.props.onDelete} />
-                        )
-                    })}
+                    {this.props.users.map((el) => (<User key={el.id} user={el} onDelete={this.props.onDelete} onEdit={this.props.onEdit} />))}
                 </ul>
-            </ >
-        );
+            )
+        } else {
+            return (
+                <ul>
+                    <li>
+                        <div className="userData" ref={(div) => this.myDiv = div}>
+                            <span className="name" style={{ textAlign: "center", marginBottom: "5px", height: "100%", paddingTop: "40%", background: "transparent" }}>No users</span>
+                        </div>
+                    </li>
+                </ul>
+            )
+        }
     }
 }
 

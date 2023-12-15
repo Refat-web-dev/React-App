@@ -1,43 +1,52 @@
 import React from "react";
 import List from "./components/List";
 import AddUser from "./components/AddUser";
+import axios from "axios";
+
+let base_url = 'https://jsonplaceholder.org/users'
 
 class App extends React.Component {
     constructor(props) {
         super(props)
+
+        axios.get(base_url).then(res => this.setState({ users: res.data }))
+
         this.state = {
             users: []
         }
 
         this.addUser = this.addUser.bind(this)
-        this.deleteUSer = this.deleteUSer.bind(this)
-    }
-
-    componentDidMount() {
-        fetch('https://jsonplaceholder.org/users')
-            .then((response) => response.json())
-            .then(list => {
-                this.setState({ users: list.slice(0, 6) });
-            });
+        this.deleteUser = this.deleteUser.bind(this)
+        this.editUser = this.editUser.bind(this)
     }
 
     render() {
         return (
             <div className="row">
-                <h1 className="title">Users:
-                    {/* <button onClick={<AddUser style="block" />} className="openModal">+</button> */}
-                </h1>
-                <List users={this.state.users} onDelete={this.deleteUSer} />
+                <h1 className="title">Users:</h1>
+                <List users={this.state.users} onDelete={this.deleteUser} onEdit={this.editUser} />
                 <aside>
-                    <AddUser onAdd={this.addUser} />
+                    <AddUser onAdd={this.addUser} className={"addUser"} />
                 </aside>
             </div>
         )
     }
 
-    deleteUSer(id) {
+    deleteUser(id) {
         this.setState({
             users: this.state.users.filter(el => el.id !== id)
+        })
+    }
+
+    editUser(user) {
+        let allUsers = this.state.users
+
+        allUsers[user.id - 1] = user
+
+        this.setState({ users: [] }, () => {
+            this.setState({
+                users: [...allUsers]
+            })
         })
     }
 
